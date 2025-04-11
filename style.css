@@ -1,0 +1,275 @@
+/* Estilos Gerais e Fonte (mantém a base) */
+body {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    margin: 0;
+    color: #333;
+    position: relative; /* Para posicionar o botão de mudo */
+    overflow-x: hidden; /* Previne scroll horizontal das animações */
+}
+
+/* Botão de Mudo */
+#mute-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100; /* Fica sobre outros elementos */
+    padding: 0; /* Remove padding padrão */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+#mute-btn:hover {
+     background-color: rgba(255, 255, 255, 1);
+     color: #000;
+     transform: scale(1.1); /* Aumenta um pouco */
+}
+
+#game-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative; /* Para animações internas */
+    /* Fundo dinâmico será aplicado via JS */
+    transition: background-color 0.5s ease;
+}
+
+/* Mascote */
+#mascot {
+    font-size: 3.5em; /* Tamanho do emoji */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Animação suave ao mudar */
+}
+
+h1 {
+    color: #0c4a6e;
+    margin-bottom: 10px; /* Reduzido */
+}
+#high-score-display {
+    color: #6b7280; /* Cinza */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Áreas Ocultáveis e Transições */
+#difficulty-selection, #game-area, #end-game {
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    display: block;
+}
+
+.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* Permite interação */
+}
+
+.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none; /* Impede interação */
+    position: absolute; /* Evita que ocupe espaço quando oculto */
+    left: 0;
+    right: 0;
+    /* Ajuste padding/margin do container se necessário */
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
+    /* Precisamos garantir que o container não colapse quando a área some */
+    /* A altura mínima no body e o alinhamento central ajudam */
+    display: none !important;
+}
+
+/* Botões */
+button {
+    padding: 10px 20px; /* Levemente menor */
+    margin: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    color: white;
+    vertical-align: middle; /* Alinha ícone e texto */
+}
+button i { /* Espaçamento do ícone */
+    margin-right: 8px;
+}
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+button:disabled { /* Estilo para botão desabilitado */
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* Botões de Dificuldade */
+#btn-facil { background-color: #22c55e; }
+#btn-medio { background-color: #f97316; }
+#btn-dificil { background-color: #ef4444; }
+#btn-lendario { background-color: #a855f7; }
+.difficulty-btn .details { /* Texto menor para detalhes */
+    font-size: 0.8em;
+    opacity: 0.9;
+    display: block; /* Quebra linha */
+    margin-top: 3px;
+    font-weight: normal;
+}
+
+
+/* Área do Jogo */
+#game-area {
+    margin-top: 20px;
+}
+
+#status-bar {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre itens */
+    margin-bottom: 15px; /* Reduzido */
+    font-weight: bold;
+    color: #0891b2;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    font-size: 0.9em; /* Levemente menor */
+}
+
+/* Barra de Progresso */
+#progress-bar-container {
+    width: 100%;
+    height: 12px; /* Altura da barra */
+    background-color: #e0e7ff; /* Fundo azul claro */
+    border-radius: 6px;
+    overflow: hidden; /* Para conter a barra interna */
+    margin-bottom: 20px;
+}
+#progress-bar {
+    height: 100%;
+    width: 0%; /* Começa vazia */
+    background-color: #4ade80; /* Verde */
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out; /* Animação suave */
+}
+
+#problem {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1e293b;
+    min-height: 50px; /* Evita pulo de layout */
+    transition: opacity 0.3s ease-out; /* Para fade entre níveis */
+}
+#problem.fade-out { opacity: 0; }
+
+
+#answer-input {
+    padding: 12px;
+    font-size: 1.2em;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 200px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease, transform 0.1s ease; /* Adiciona transição de transform */
+}
+#answer-input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+}
+/* Animação de Tremer (Erro) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.shake-error {
+    animation: shake 0.3s linear;
+    border-color: #dc2626 !important; /* Força borda vermelha */
+}
+
+
+#submit-btn {
+    background-color: #10b981;
+    display: inline-block; /* Permite animações/transform */
+    margin: 0 auto 15px auto;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Adiciona transição */
+}
+/* Animação de Pulsar (Acerto) */
+@keyframes pulse {
+  0% { transform: scale(1); background-color: #10b981;}
+  50% { transform: scale(1.1); background-color: #34d399;} /* Aumenta e clareia */
+  100% { transform: scale(1); background-color: #10b981;}
+}
+.pulse-green {
+    animation: pulse 0.6s ease-out;
+}
+
+#feedback {
+    margin-top: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    min-height: 20px;
+}
+.correct { color: #16a34a; }
+.incorrect { color: #dc2626; }
+
+/* Timer */
+#timer-display { color: #f59e0b; }
+#timer-display.low-time { color: #dc2626 !important; font-weight: bold; } /* Vermelho quando baixo */
+
+/* Fim de Jogo */
+#end-message {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px; /* Reduzido */
+}
+#final-score-display {
+    font-size: 1.1em;
+    color: #3b82f6; /* Azul */
+    margin-bottom: 25px;
+}
+#play-again-btn { background-color: #3b82f6; }
+
+/* Oculta as setas do input number (mantido) */
+#answer-input::-webkit-outer-spin-button,
+#answer-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#answer-input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
