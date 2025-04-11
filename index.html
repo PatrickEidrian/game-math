@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -76,4 +77,84 @@
         }
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Matemática Divertido</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="images/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <button id="mute-btn" title="Ativar/Desativar Som"><i class="fas fa-volume-xmark"></i></button>
+
+    <div id="game-container">
+        <div id="mascot">🤔</div>
+
+        <h1>Matemática Divertida! 🚀</h1>
+        <p id="high-score-display">Recorde: 0</p> <div id="difficulty-selection" class="visible">
+            <p>Escolha como você quer jogar:</p>
+            <button class="difficulty-btn" id="btn-facil" data-difficulty="facil"><i class="fas fa-face-smile"></i> Fácil <span class="details">(3 chances)</span></button>
+            <button class="difficulty-btn" id="btn-medio" data-difficulty="medio"><i class="fas fa-face-meh"></i> Médio <span class="details">(2 chances)</span></button>
+            <button class="difficulty-btn" id="btn-dificil" data-difficulty="dificil"><i class="fas fa-face-grimace"></i> Difícil <span class="details">(1 chance)</span></button>
+            <button class="difficulty-btn" id="btn-lendario" data-difficulty="lendario"><i class="fas fa-meteor"></i> Lendário <span class="details">(1 chance, 15s)</span></button>
+        </div>
+
+        <div id="game-area" class="hidden">
+            <div id="status-bar">
+                <span id="level-display">Nível: 1</span>
+                <span id="score-display">Pontos: 0</span> <span id="chances-display">Chances: 3</span>
+                <span id="timer-display" class="hidden">Tempo: 15s</span>
+            </div>
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="problem">Qual é o resultado de 5 + 3?</p>
+            <input type="number" id="answer-input" placeholder="Sua resposta">
+            <button id="submit-btn"><i class="fas fa-check"></i> Verificar</button>
+            <p id="feedback"></p>
+        </div>
+
+        <div id="end-game" class="hidden">
+            <p id="end-message">Fim de Jogo!</p>
+            <p id="final-score-display">Sua pontuação final: 0</p>
+            <button id="play-again-btn"><i class="fas fa-redo"></i> Jogar Novamente</button>
+        </div>
+    </div>
+
+    <audio id="audio-correct" src="sounds/correct.mp3" preload="auto"></audio>
+    <audio id="audio-incorrect" src="sounds/incorrect.mp3" preload="auto"></audio>
+    <audio id="audio-click" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="audio-win" src="sounds/win.mp3" preload="auto"></audio>
+    <audio id="audio-lose" src="sounds/lose.mp3" preload="auto"></audio>
+    <audio id="audio-bgm" src="sounds/background_music.mp3" loop preload="auto"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso! Escopo:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Falha ao registrar o Service Worker:', error);
+                    });
+            });
+        } else {
+            console.log('Service Worker não suportado neste navegador.');
+        }
+    </script>
+</body>
+>>>>>>> bed03fc9963c813664d6a66ddd2cdf0af4899d3f
 </html>
